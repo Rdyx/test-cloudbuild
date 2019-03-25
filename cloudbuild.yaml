@@ -2,7 +2,9 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['run', build]
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy"]
+  args: ['run', 'build']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['rm', '-r', 'node_modules', "public", 'src', 'package.json', 'yarn.lock', 'README.md', '.gitignore']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['app', 'deploy']
 timeout: "1600s"
